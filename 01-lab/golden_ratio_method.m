@@ -12,43 +12,37 @@ func = @(x) ((x.^2 - a).^2) / (b - 1);
 precision = 10^(-4);
 
 % Initial values
+fibonacci_num = (-1 + sqrt(5)) / 2;
 left_end = focus_left_end;
 right_end = focus_right_end;
 interval_length = right_end - left_end;
-xm = (left_end + right_end) / 2;
+x1 = right_end - fibonacci_num * interval_length;
+x2 = left_end + fibonacci_num * interval_length;
 
 % Preparation for plotting graphs
 x1_list = [];
 x2_list = [];
-xm_list = [];
 
 while interval_length > precision
-    % Preparing x values
-    x1 = left_end + interval_length / 4;
-    x2 = right_end - interval_length / 4;
+    % Saving values for plotting
+    x1_list = [x1_list, x1];
+    x2_list = [x2_list, x2];
 
     % Preparing y values 
     y1 = func(x1);
     y2 = func(x2);
-    ym = func(xm);
 
-    % Saving values for plotting
-    x1_list = [x1_list, x1];
-    x2_list = [x2_list, x2];
-    xm_list = [xm_list, xm];
-
-    if y1 < ym
-        right_end = xm;
-        xm = x1;
-    elseif y2 < ym
-        left_end = xm;
-        xm = x2;
-    elseif y1 >= ym && y2 >= ym
+    if y2 < y1
         left_end = x1;
+        interval_length = right_end - left_end;
+        x1 = x2;
+        x2 = left_end + fibonacci_num * interval_length;
+    else
         right_end = x2;
+        interval_length = right_end - left_end;
+        x2 = x1;
+        x1 = right_end - fibonacci_num * interval_length;
     end
-
-    interval_length = right_end - left_end;
 end
 
 % Results
@@ -68,12 +62,6 @@ approx_graph.LineWidth = 1.5;
 
 % Plotting selected points
 selected_points_graph = plot(x1_list, func(x1_list)); hold on;
-selected_points_graph.Color = '#404dff';
-selected_points_graph.LineStyle = "none";
-selected_points_graph.Marker = '.';
-selected_points_graph.MarkerSize = 20;
-
-selected_points_graph = plot(xm_list, func(xm_list)); hold on;
 selected_points_graph.Color = '#404dff';
 selected_points_graph.LineStyle = "none";
 selected_points_graph.Marker = '.';
@@ -101,7 +89,6 @@ for i = 1:iteration_num
     Iteration = [Iteration; iteration_name];
 end
 
-
-points_table = table(Iteration, x1_list', xm_list', x2_list');
-filename = 'bisection_method_results.xlsx';
+points_table = table(Iteration, x1_list', x2_list');
+filename = 'golden_ratio_method_results.xlsx';
 writetable(points_table, filename)
