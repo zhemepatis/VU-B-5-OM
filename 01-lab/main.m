@@ -19,18 +19,18 @@ display_bisection_method(f, bisection_method_x_values);
 display_golden_ratio_method(f, golden_ratio_method_x_values);
 display_newton_method(f, newton_method_x_values);
 
-% % Plotting function and selected points 
-% figure(1);
-% plot_function(f, interest_left_end, interest_right_end);
-% plot_selected_points(f, bisection_method_x_values);
+% Plotting function and selected points 
+figure(1);
+plot_function(f, interest_left_end, interest_right_end);
+plot_selected_points(f, bisection_method_x_values);
 
-% figure(2);
-% plot_function(f, interest_left_end, interest_right_end);
-% plot_selected_points(f, golden_ratio_method_x_values);
+figure(2);
+plot_function(f, interest_left_end, interest_right_end);
+plot_selected_points(f, golden_ratio_method_x_values);
 
-% figure(3);
-% plot_function(f, interest_left_end, interest_right_end);
-% plot_selected_points(f, newton_method_x_values);
+figure(3);
+plot_function(f, interest_left_end, interest_right_end);
+plot_selected_points(f, newton_method_x_values);
 
 % % Writing selected points to excel
 write_bisection_method(bisection_method_x_values);
