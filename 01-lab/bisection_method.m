@@ -12,7 +12,9 @@ function selected_x_values = bisection_method(f, interest_left_end, interest_rig
         x1 = left_end + interval_length / 4;
         x2 = right_end - interval_length / 4;
 
-        selected_x_values = [selected_x_values, x1, x2, xm];
+        if isempty(selected_x_values)
+            selected_x_values = [x1, x2, xm];
+        end
 
         y1 = f(x1);
         y2 = f(x2);
@@ -30,5 +32,6 @@ function selected_x_values = bisection_method(f, interest_left_end, interest_rig
         end
 
         interval_length = right_end - left_end;
+        selected_x_values = [selected_x_values, x1, x2, xm];
     end
 end
