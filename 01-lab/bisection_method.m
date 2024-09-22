@@ -8,7 +8,7 @@ function selected_x_values = bisection_method(f, interest_left_end, interest_rig
     xm = (left_end + right_end) / 2;
 
     selected_x_values = [];
-    while true
+    while interval_length > precision
         x1 = left_end + interval_length / 4;
         x2 = right_end - interval_length / 4;
 
@@ -30,10 +30,7 @@ function selected_x_values = bisection_method(f, interest_left_end, interest_rig
         end
 
         interval_length = right_end - left_end;
-        if interval_length < precision
-            break;
-        end
     end
 
-    selected_x_values = [selected_x_values, xm]
+    selected_x_values = [selected_x_values, xm];
 end
