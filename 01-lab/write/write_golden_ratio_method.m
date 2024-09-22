@@ -9,6 +9,6 @@ function write_golden_ratio_method(selected_points)
     end
 
     point_table = table(rearranged_array);
-    filename = 'results/golden_ratio_method_results.xlsx';
+    filename = 'results/excel/golden_ratio_method_results.xlsx';
     writetable(point_table, filename);
 end

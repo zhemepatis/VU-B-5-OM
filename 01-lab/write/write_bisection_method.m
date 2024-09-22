@@ -10,6 +10,6 @@ function write_bisection_method(selected_points)
     end
 
     point_table = table([rearranged_array; 0, 0, selected_points(end)]);
-    filename = 'results/bisection_method_results.xlsx';
+    filename = 'results/excel/bisection_method_results.xlsx';
     writetable(point_table, filename);
 end
