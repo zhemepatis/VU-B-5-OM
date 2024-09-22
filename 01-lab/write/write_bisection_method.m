@@ -9,7 +9,7 @@ function write_bisection_method(selected_points)
         rearranged_array = [rearranged_array; x1, x2, xm];
     end
 
-    point_table = table([rearranged_array; "-", "-", selected_points(end)]);
+    point_table = table([rearranged_array; 0, 0, selected_points(end)]);
     filename = 'results/bisection_method_results.xlsx';
     writetable(point_table, filename);
 end
