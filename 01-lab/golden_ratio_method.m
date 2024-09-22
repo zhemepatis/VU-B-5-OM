@@ -1,4 +1,4 @@
-function [xm, ym] = golden_ratio_method(f, interest_left_end, interest_right_end)
+function selected_x_values = golden_ratio_method(f, interest_left_end, interest_right_end)
     precision = 10^(-4); % Method precision (when to stop)
 
     fibonacci_num = (-1 + sqrt(5)) / 2;
@@ -11,7 +11,10 @@ function [xm, ym] = golden_ratio_method(f, interest_left_end, interest_right_end
     x1 = right_end - fibonacci_num * interval_length;
     x2 = left_end + fibonacci_num * interval_length;
     
+    selected_x_values = [];
     while interval_length > precision
+        selected_x_values = [selected_x_values, x1, x2];
+
         y1 = f(x1);
         y2 = f(x2);
 
@@ -27,7 +30,4 @@ function [xm, ym] = golden_ratio_method(f, interest_left_end, interest_right_end
             x1 = right_end - fibonacci_num * interval_length;
         end
     end
-
-    xm = (x1 + x2) / 2;
-    ym = f(xm);
 end

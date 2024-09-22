@@ -1,4 +1,4 @@
-function [xm, ym] = bisection_method(f, interest_left_end, interest_right_end)
+function selected_x_values = bisection_method(f, interest_left_end, interest_right_end)
     precision = 10^(-4); % Method precision (when to stop)
     
     % Initial values
@@ -7,9 +7,12 @@ function [xm, ym] = bisection_method(f, interest_left_end, interest_right_end)
     interval_length = right_end - left_end;
     xm = (left_end + right_end) / 2;
 
+    selected_x_values = [];
     while interval_length > precision
         x1 = left_end + interval_length / 4;
         x2 = right_end - interval_length / 4;
+
+        selected_x_values = [selected_x_values, x1, x2, xm];
 
         y1 = f(x1);
         y2 = f(x2);
