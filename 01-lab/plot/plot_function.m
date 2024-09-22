@@ -5,6 +5,9 @@ function plot_function(f, interest_left_end, interest_right_end)
     xline(0); hold on; 
     yline(0); hold on;
 
+    xlabel('x');
+    ylabel('y');
+
     % plotting given function
     graph = plot(x_values, f(x_values)); hold on;
     graph.Color = '#07bdfa';
