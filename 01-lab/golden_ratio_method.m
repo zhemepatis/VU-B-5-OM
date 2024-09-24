@@ -11,10 +11,12 @@ function selected_x_values = golden_ratio_method(f, interest_left_end, interest_
     x1 = right_end - fibonacci_num * interval_length;
     x2 = left_end + fibonacci_num * interval_length;
 
+    function_calls = 0;
     selected_x_values = [];
     while interval_length > precision
         y1 = f(x1);
         y2 = f(x2);
+        function_calls = function_calls + 2;
 
         selected_x_values = [selected_x_values, x1, x2];
 
@@ -31,5 +33,6 @@ function selected_x_values = golden_ratio_method(f, interest_left_end, interest_
         end
     end
 
+    disp("Golden ratio method function calls: " + function_calls);
     selected_x_values = [selected_x_values, x1, x2];
 end
