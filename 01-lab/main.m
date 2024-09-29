@@ -3,7 +3,6 @@ clearvars, clc, close all
 % Adding paths
 addpath("display");
 addpath("plot");
-addpath("write");
 
 % Declaring function
 interest_left_end = 0;
@@ -34,8 +33,3 @@ plot_selected_points(f, golden_ratio_method_x_values);
 figure(4);
 plot_function(f, interest_left_end, interest_right_end);
 plot_selected_points(f, newton_method_x_values);
-
-% Writing selected points to excel
-write_bisection_method(bisection_method_x_values);
-write_golden_ratio_method(bisection_method_x_values);
-write_newton_method(newton_method_x_values);

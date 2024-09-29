@@ -9,14 +9,19 @@ function selected_x_values = newton_method(f, x0)
     
     prev = x0;
     next = prev - f_d1(prev) / f_d2(prev);
-    function_calls = 2;
     selected_x_values = [prev, next];
-    while abs(prev - next) > precision       
+    
+    iterations = 1;
+    func_calls = 2;
+    while abs(prev - next) > precision
+        iterations = iterations + 1;
+        func_calls = func_calls + 2;
+        
         prev = next;
         next = prev - f_d1(prev) / f_d2(prev);
-        function_calls = function_calls + 2;
         selected_x_values = [selected_x_values, next];
     end
 
-    disp("Newton method function calls: " + function_calls);
+    disp("Newton method iterations: " + iterations);
+    disp("Newton method function calls: " + func_calls);
 end
