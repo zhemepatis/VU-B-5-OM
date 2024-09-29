@@ -24,7 +24,7 @@ plot_function(f, -10, 10);
 
 figure(2);
 plot_function(f, interest_left_end, interest_right_end);
-plot_selected_points(f, bisection_method_x_values);
+plot_bisection_method_points(f, bisection_method_x_values);
 
 figure(3);
 plot_function(f, interest_left_end, interest_right_end);
