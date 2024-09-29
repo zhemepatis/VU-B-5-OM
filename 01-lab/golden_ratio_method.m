@@ -9,31 +9,39 @@ function selected_x_values = golden_ratio_method(f, interest_left_end, interest_
     interval_length = right_end - left_end;
 
     x1 = right_end - fibonacci_num * interval_length;
+    y1 = f(x1);
     x2 = left_end + fibonacci_num * interval_length;
+    y2 = f(x2);
 
     selected_x_values = [];
 
     iterations = 0;
-    func_calls = 0;
+    func_calls = 2;
     while interval_length > precision
         iterations = iterations + 1;
         func_calls = func_calls + 1;
         
-        y1 = f(x1);
-        y2 = f(x2);
-
         selected_x_values = [selected_x_values, x1, x2];
 
         if y2 < y1
             left_end = x1;
             interval_length = right_end - left_end;
+
             x1 = x2;
+            y1 = y2;
+            
             x2 = left_end + fibonacci_num * interval_length;
+            y2 = f(x2);
+
         else
             right_end = x2;
             interval_length = right_end - left_end;
+            
             x2 = x1;
+            y2 = y1;
+
             x1 = right_end - fibonacci_num * interval_length;
+            y1 = f(x1);
         end
     end
 
