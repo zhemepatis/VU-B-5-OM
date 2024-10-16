@@ -1,0 +1,66 @@
+%% Variable clean up, closing figures
+clearvars; clc; close all;
+
+addpath("utilities");
+
+%% defining objective function and its gradient
+f = @(x, y) (y.*x.^2 + x.*y.^2 - x.*y)/8;
+grad_x = @(x, y) (2*x.*y + y.^2 - y)/8;
+grad_y = @(x, y) (x.^2 + 2*x.*y - x)/8;
+
+%% gradient descent method analysis
+gamma = 0.8;
+
+% plotting objective function
+figure(1);
+prep_for_3d_plot([-0.1, 1.1], [-0.1, 1.1], [-0.1, 1.1]);
+plot_3d_function(f);
+
+
+% when initial point is (0; 0)
+initial_point = [0, 0];
+results = gradient_descent(initial_point, grad_x, grad_y, gamma);
+x_values = results(1, :);
+y_values = results(2, :);
+
+% plotting
+figure(2);
+prep_for_3d_plot([-0.1, 1.1], [-0.1, 1.1], [-0.1, 1.1]);
+plot_3d_function(f);
+
+hold on;
+graph = scatter3(x_values, y_values, f(x_values, y_values), 'filled', 'MarkerFaceColor', 'r'); 
+hold off;
+
+
+% when initial point is (1; 1)
+initial_point = [1, 1];
+results = gradient_descent(initial_point, grad_x, grad_y, gamma);
+x_values = results(1, :);
+y_values = results(2, :);
+
+% plotting
+figure(3);
+prep_for_3d_plot([-0.1, 1.1], [-0.1, 1.1], [-0.1, 1.1]);
+plot_3d_function(f);
+
+hold on;
+graph = scatter3(x_values, y_values, f(x_values, y_values), 'filled', 'MarkerFaceColor', 'r'); 
+hold off;
+
+
+% when initial point is (0.1; 0.5)
+initial_point = [1/10, 5/10];
+results = gradient_descent(initial_point, grad_x, grad_y, gamma);
+x_values = results(1, :);
+y_values = results(2, :);
+
+% plotting
+figure(4);
+prep_for_3d_plot([-0.1, 1.1], [-0.1, 1.1], [-0.1, 1.1]);
+plot_3d_function(f);
+
+hold on;
+graph = scatter3(x_values, y_values, f(x_values, y_values), 'filled', 'MarkerFaceColor', 'r'); 
+hold off;
+
