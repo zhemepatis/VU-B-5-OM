@@ -9,7 +9,7 @@ grad_x = @(x, y) (2*x.*y + y.^2 - y)/8;
 grad_y = @(x, y) (x.^2 + 2*x.*y - x)/8;
 
 %% gradient descent method analysis
-gamma = 0.8;
+gamma = 2.4;
 
 % plotting objective function
 figure(1);
