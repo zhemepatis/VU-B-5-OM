@@ -27,7 +27,7 @@ prep_for_3d_plot([-0.1, 1.1], [-0.1, 1.1], [-0.1, 1.1]);
 plot_3d_function(f);
 
 hold on;
-graph = scatter3(x_values, y_values, f(x_values, y_values), 'filled', 'MarkerFaceColor', 'r'); 
+scatter3(x_values, y_values, f(x_values, y_values), 'filled', 'MarkerFaceColor', 'r'); 
 hold off;
 
 
@@ -43,7 +43,7 @@ prep_for_3d_plot([-0.1, 1.1], [-0.1, 1.1], [-0.1, 1.1]);
 plot_3d_function(f);
 
 hold on;
-graph = scatter3(x_values, y_values, f(x_values, y_values), 'filled', 'MarkerFaceColor', 'r'); 
+scatter3(x_values, y_values, f(x_values, y_values), 'filled', 'MarkerFaceColor', 'r'); 
 hold off;
 
 
@@ -59,6 +59,6 @@ prep_for_3d_plot([-0.1, 1.1], [-0.1, 1.1], [-0.1, 1.1]);
 plot_3d_function(f);
 
 hold on;
-graph = scatter3(x_values, y_values, f(x_values, y_values), 'filled', 'MarkerFaceColor', 'r'); 
+scatter3(x_values, y_values, f(x_values, y_values), 'filled', 'MarkerFaceColor', 'r'); 
 hold off;
 

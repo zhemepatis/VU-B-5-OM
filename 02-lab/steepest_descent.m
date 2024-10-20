@@ -12,7 +12,7 @@ function selected_points = steepest_descent(f, init_point, grad_x, grad_y)
         grad_x_val = grad_x(x_val, y_val);
         grad_y_val = grad_y(x_val, y_val);
 
-        gamma = bisection_method(f, [x_val, y_val], [grad_x_val, grad_y_val], 0, 4);
+        gamma = bisection_method(f, [x_val, y_val], [grad_x_val, grad_y_val], 0, 20);
         next_x_val = x_val - gamma*grad_x_val;
         next_y_val = y_val - gamma*grad_y_val;
         
