@@ -16,10 +16,11 @@ grad_y = @(x, y) (x.^2 + 2*x.*y - x)/8;
 
 
 % when initial point is (0; 0)
-initial_point = [1/10, 5/10];
-results = deformed_simplex(f, initial_point, 0.8, 2);
+initial_point = [0, 0];
+results = deformed_simplex(f, initial_point, 0.8, 2)
 x_values = results(:, 1);
 y_values = results(:, 2);
+z_values = results(:, 3);
 
 % plotting
 figure(2);
@@ -27,7 +28,7 @@ prep_for_3d_plot([-0.1, 1.1], [-0.1, 1.1], [-0.1, 1.1]);
 plot_3d_function(f);
 
 hold on;
-scatter3(x_values, y_values, f(x_values, y_values), 'filled', 'MarkerFaceColor', 'r'); 
+scatter3(x_values, y_values, z_values, 'filled', 'MarkerFaceColor', 'r'); 
 hold off;
 
 
