@@ -11,20 +11,15 @@ grad_y = @(x, y) (x.^2 + 2*x.*y - x)/8;
 %% gradient descent method analysis
 gamma = 2.4;
 
-% plotting objective function
-figure(1);
-prep_for_3d_plot([-0.1, 1.1], [-0.1, 1.1], [-0.1, 1.1]);
-plot_3d_function(f);
-
-
 % when initial point is (0; 0)
 initial_point = [0, 0];
 results = gradient_descent(initial_point, grad_x, grad_y, gamma);
 x_values = results(1, :);
 y_values = results(2, :);
+disp("Result: x = " + num2str(x_values(end)) + ", y = " + num2str(y_values(end)) + ", z = " + num2str(f(x_values(end), y_values(end))));
 
 % plotting
-figure(2);
+figure(1);
 prep_for_3d_plot([-0.1, 1.1], [-0.1, 1.1], [-0.1, 1.1]);
 plot_3d_function(f);
 
@@ -38,9 +33,10 @@ initial_point = [1, 1];
 results = gradient_descent(initial_point, grad_x, grad_y, gamma);
 x_values = results(1, :);
 y_values = results(2, :);
+disp("Result: x = " + num2str(x_values(end)) + ", y = " + num2str(y_values(end)) + ", z = " + num2str(f(x_values(end), y_values(end))));
 
 % plotting
-figure(3);
+figure(2);
 prep_for_3d_plot([-0.1, 1.1], [-0.1, 1.1], [-0.1, 1.1]);
 plot_3d_function(f);
 
@@ -54,9 +50,10 @@ initial_point = [1/10, 5/10];
 results = gradient_descent(initial_point, grad_x, grad_y, gamma);
 x_values = results(1, :);
 y_values = results(2, :);
+disp("Result: x = " + num2str(x_values(end)) + ", y = " + num2str(y_values(end)) + ", z = " + num2str(f(x_values(end), y_values(end))));
 
 % plotting
-figure(4);
+figure(3);
 prep_for_3d_plot([-0.1, 1.1], [-0.1, 1.1], [-0.1, 1.1]);
 plot_3d_function(f);
 
