@@ -3,7 +3,7 @@ function past_simplexes = deformed_simplex(f, initial_point, alfa, shrink_coef)
     beta = 0.5;
     nu = -0.5;
 
-    max_step_num = 1000;
+    max_step_num = 100;
     step_threshold = 10^(-4);
 
     initial_point = [initial_point, f(initial_point(1), initial_point(2))];
