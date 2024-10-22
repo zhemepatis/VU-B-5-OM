@@ -8,7 +8,10 @@ function past_simplexes = deformed_simplex(f, initial_point, alfa, shrink_coef)
 
     initial_point = [initial_point, f(initial_point(1), initial_point(2))];
     curr_simplex = get_simplex(f, initial_point, alfa);
+    curr_simplex = sort_simplex(curr_simplex);
     past_simplexes = curr_simplex;
+
+    function_calls = 3;
 
     for i = 1:max_step_num
         area = get_simplex_area(curr_simplex);
@@ -16,12 +19,12 @@ function past_simplexes = deformed_simplex(f, initial_point, alfa, shrink_coef)
             break;
         end
 
-        curr_simplex = sort_simplex(curr_simplex);
         middle_point = get_middle_point(curr_simplex);
-        middle_point(3) = f(middle_point(1), middle_point(2));
-
+        
         reflection = get_new_point(middle_point, curr_simplex(1), 1);
-        reflection = validate_point(f, reflection);
+        reflection = validate_point(reflection);
+        reflection(3) = f(reflection(1), reflection(2));
+        function_calls = function_calls + 1;
 
         x_h = curr_simplex(1, :);
         x_g = curr_simplex(2, :);
@@ -32,14 +35,15 @@ function past_simplexes = deformed_simplex(f, initial_point, alfa, shrink_coef)
             new_point = reflection;
         elseif reflection(3) < x_l(3)
             new_point = get_new_point(middle_point, curr_simplex(1), gamma);
-            new_point = validate_point(f, new_point);  % Ensure valid new point
         elseif reflection(3) > x_h(3)
             new_point = get_new_point(middle_point, curr_simplex(1), nu);
-            new_point = validate_point(f, new_point);
         elseif x_g(3) < reflection(3) && reflection(3) < x_h(3)
             new_point = get_new_point(middle_point, curr_simplex(1), beta);
-            new_point = validate_point(f, new_point);
         end
+        
+        new_point = validate_point(new_point);
+        new_point(3) = f(new_point(1), new_point(2));
+        function_calls = function_calls + 1;
 
         curr_simplex(1, :) = new_point;
         curr_simplex = sort_simplex(curr_simplex);
@@ -48,10 +52,15 @@ function past_simplexes = deformed_simplex(f, initial_point, alfa, shrink_coef)
         if is_repetition
             alfa = alfa / shrink_coef;
             curr_simplex = get_simplex(f, curr_simplex(3, :), alfa);
+            function_calls = function_calls + 2;
         end
 
+        curr_simplex = sort_simplex(curr_simplex);
         past_simplexes = [past_simplexes; curr_simplex];
     end
+
+    disp("Iterations: " + num2str(size(past_simplexes, 1) / 3));
+    disp("Function calls: " + num2str(function_calls));
 end
 
 function simplex = get_simplex(f, initial_point, alfa)
@@ -69,6 +78,8 @@ function simplex = get_simplex(f, initial_point, alfa)
                 curr_point_coords(j) = curr_point_coords(j) + delta_1;
             end
         end
+
+        curr_point_coords = validate_point(curr_point_coords);
         simplex = [simplex; curr_point_coords, f(curr_point_coords(1), curr_point_coords(2))];
     end
 end
@@ -94,13 +105,12 @@ function new_point = get_new_point(middle_point, worst_point, theta)
     new_point = worst_point + (1 + theta) * (middle_point - worst_point);
 end
 
-function point = validate_point(f, point)
+function point = validate_point(point)
     for i = 1:2
         if point(i) < 0
             point(i) = 0;
         end
     end
-    point(3) = f(point(1), point(2));
 end
 
 function is_repetition = check_repetition(curr_simplex, past_simplexes, max_repetition_num)

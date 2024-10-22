@@ -17,6 +17,7 @@ results = deformed_simplex(f, initial_point, alfa, 2);
 x_values = results(:, 1);
 y_values = results(:, 2);
 z_values = results(:, 3);
+disp("Result: x = " + num2str(x_values(end)) + ", y = " + num2str(y_values(end)) + ", z = " + num2str(z_values(end)));
 
 % plotting
 figure(1);
@@ -30,10 +31,11 @@ hold off;
 
 % % when initial point is (1; 1)
 initial_point = [1, 1];
-results = deformed_simplex(f, initial_point, alfa, 2)
+results = deformed_simplex(f, initial_point, alfa, 2);
 x_values = results(:, 1);
 y_values = results(:, 2);
 z_values = results(:, 3);
+disp("Result: x = " + num2str(x_values(end)) + ", y = " + num2str(y_values(end)) + ", z = " + num2str(z_values(end)));
 
 % plotting
 figure(2);
@@ -47,10 +49,11 @@ hold off;
 
 %% when initial point is (0.1; 0.5)
 initial_point = [1/10, 5/10];
-results = deformed_simplex(f, initial_point, alfa, 2)
+results = deformed_simplex(f, initial_point, alfa, 2);
 x_values = results(:, 1);
 y_values = results(:, 2);
 z_values = results(:, 3);
+disp("Result: x = " + num2str(x_values(end)) + ", y = " + num2str(y_values(end)) + ", z = " + num2str(z_values(end)));
 
 % plotting
 figure(3);
