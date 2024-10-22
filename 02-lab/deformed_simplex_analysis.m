@@ -16,8 +16,8 @@ grad_y = @(x, y) (x.^2 + 2*x.*y - x)/8;
 
 
 % when initial point is (0; 0)
-initial_point = [0, 0];
-results = deformed_simplex(f, initial_point, 0.8);
+initial_point = [1/10, 5/10];
+results = deformed_simplex(f, initial_point, 0.8, 2);
 x_values = results(:, 1);
 y_values = results(:, 2);
 
