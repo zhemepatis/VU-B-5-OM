@@ -9,17 +9,12 @@ grad_x = @(x, y) (2*x.*y + y.^2 - y)/8;
 grad_y = @(x, y) (x.^2 + 2*x.*y - x)/8;
 
 %% steepest descent method analysis
-% plotting objective function
-figure(1);
-prep_for_3d_plot([-0.1, 1.1], [-0.1, 1.1], [-0.1, 1.1]);
-plot_3d_function(f);
-
-
 % when initial point is (0; 0)
 initial_point = [0, 0];
 results = steepest_descent(f, initial_point, grad_x, grad_y);
 x_values = results(1, :);
 y_values = results(2, :);
+disp("Result: x = " + num2str(x_values(end)) + ", y = " + num2str(y_values(end)) + ", z = " + num2str(f(x_values(end), y_values(end))));
 
 % plotting
 figure(2);
@@ -36,6 +31,7 @@ initial_point = [1, 1];
 results = steepest_descent(f, initial_point, grad_x, grad_y);
 x_values = results(1, :);
 y_values = results(2, :);
+disp("Result: x = " + num2str(x_values(end)) + ", y = " + num2str(y_values(end)) + ", z = " + num2str(f(x_values(end), y_values(end))));
 
 % plotting
 figure(3);
@@ -52,6 +48,7 @@ initial_point = [1/10, 5/10];
 results = steepest_descent(f, initial_point, grad_x, grad_y);
 x_values = results(1, :);
 y_values = results(2, :);
+disp("Result: x = " + num2str(x_values(end)) + ", y = " + num2str(y_values(end)) + ", z = " + num2str(f(x_values(end), y_values(end))));
 
 % plotting
 figure(4);

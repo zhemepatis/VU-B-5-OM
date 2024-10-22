@@ -1,4 +1,4 @@
-function min_gamma = bisection_method(func, args, grad, interest_left_end, interest_right_end)
+function [min_gamma, func_calls] = bisection_method(func, args, grad, interest_left_end, interest_right_end)
     % defining function
     f = @(gamma) func(args(1)+gamma*grad(1), args(2)+gamma*grad(2));
     

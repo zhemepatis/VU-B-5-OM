@@ -6,7 +6,7 @@ function selected_points = gradient_descent(init_point, grad_x, grad_y, gamma)
     y_values = [init_point(2)];
 
     iterations = 0;
-    function_calls = 0;
+    function_calls = 1; % one more function call is needed tin the end when getting value in min point
 
     while step_size > step_size_threshold
         x_val = x_values(end);
