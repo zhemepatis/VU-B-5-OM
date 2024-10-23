@@ -2,7 +2,7 @@ function [min_gamma, func_calls] = bisection_method(func, args, grad, interest_l
     % defining function
     f = @(gamma) func(args(1)+gamma*grad(1), args(2)+gamma*grad(2));
     
-    step_threshold = 0.9;
+    step_threshold = 0.0001;
 
     % initial values
     left_end = interest_left_end;

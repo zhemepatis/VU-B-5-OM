@@ -1,5 +1,5 @@
 function selected_points = gradient_descent(init_point, grad_x, grad_y, gamma)
-    step_size_threshold = 0.001;
+    step_size_threshold = 0.0001;
     step_size = inf;
     
     x_values = [init_point(1)];
