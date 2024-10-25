@@ -1,4 +1,4 @@
-function selected_x_values = newton_method(f, x0)
+function intermediate_values = newton_method(f, x0)
     precision = 10^(-4); % Method precision (when to stop)
     
     syms x;
@@ -9,19 +9,11 @@ function selected_x_values = newton_method(f, x0)
     
     prev = x0;
     next = prev - f_d1(prev) / f_d2(prev);
-    selected_x_values = [prev, next];
-    
-    iterations = 1;
-    func_calls = 2;
-    while abs(prev - next) > precision
-        iterations = iterations + 1;
-        func_calls = func_calls + 2;
-        
+
+    intermediate_values = [prev, next];
+    while abs(prev - next) > precision       
         prev = next;
         next = prev - f_d1(prev) / f_d2(prev);
-        selected_x_values = [selected_x_values, next];
+        intermediate_values = [intermediate_values, next];
     end
-
-    disp("Newton method iterations: " + iterations);
-    disp("Newton method function calls: " + func_calls);
 end

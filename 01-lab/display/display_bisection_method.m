@@ -13,5 +13,4 @@ function display_bisection_method(f, intermediate_values)
     disp("----------------")
     disp("Iterations: " + iterations);
     disp("Function calls: " + func_calls);
-    disp(newline)
 end

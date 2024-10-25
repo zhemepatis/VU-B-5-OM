@@ -16,5 +16,4 @@ function display_golden_ratio_method(f, intermediate_values)
     disp("----------------")
     disp("Iterations: " + iterations);
     disp("Function calls: " + func_calls);
-    disp(newline);
 end
