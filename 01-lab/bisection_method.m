@@ -8,13 +8,8 @@ function intermediate_values = bisection_method(f, interest_left_end, interest_r
     xm = (left_end + right_end) / 2;
     ym = f(xm);
 
-    iterations = 0;
-    func_calls = 1;
     intermediate_values = [];
-    while interval_length > precision
-        iterations = iterations + 1;
-        func_calls = func_calls + 2;
-        
+    while interval_length > precision        
         x1 = left_end + interval_length / 4;
         x2 = right_end - interval_length / 4;
         intermediate_values = [intermediate_values; left_end, x1, xm, x2, right_end];
@@ -35,7 +30,6 @@ function intermediate_values = bisection_method(f, interest_left_end, interest_r
             right_end = x2;
         end
         interval_length = right_end - left_end;
-
     end
 
     intermediate_values = [intermediate_values; 0, 0, xm, 0, 0];

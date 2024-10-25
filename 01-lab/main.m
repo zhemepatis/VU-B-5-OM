@@ -11,19 +11,36 @@ x0 = 5;
 
 f = @(x) ((x.^2 - 1).^2) / 5 - 1;
 
-% bisection method
+%% BISECTION METHOD
 bisection_method_values = bisection_method(f, interest_left_end, interest_right_end);
 display_bisection_method(f, bisection_method_values);
 write_intermediate_values(bisection_method_values, "results/excel/bisection_method.xlsx");
 
-% plotting
-x_values = bisection_method_values(:, 3);
+% TODO: plotting
+% x_values = bisection_method_values(:, 3);
 
-figure(1);
-plot_function(f, interest_left_end, interest_right_end);
-plot_bisection_method_points(f, x_values);
+% figure(1);
+% plot_function(f, interest_left_end, interest_right_end);
+% plot_bisection_method_points(f, x_values);
 
-% golden_ratio_method_x_values = golden_ratio_method(f, interest_left_end, interest_right_end);
+
+%% GOLDEN RATIO METHOD
+golden_ratio_method_values = golden_ratio_method(f, interest_left_end, interest_right_end);
+display_golden_ratio_method(f, golden_ratio_method_values);
+% write_intermediate_values(golden_ratio_method_values, "results/excel/golden_ratio_method.xlsx");
+
+% TODO: plotting 
+% figure(2);
+% plot_function(f, interest_left_end, interest_right_end);
+% plot_golden_ratio_method_points(f, x_values);
+
+
+
+
+
+
+
+
 % newton_method_x_values = newton_method(f, x0);
 
 
