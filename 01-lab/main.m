@@ -1,6 +1,7 @@
 clearvars, clc, close all
 
 % Adding paths
+addpath("utils");
 addpath("display");
 addpath("plot");
 
@@ -42,7 +43,8 @@ newton_method_values = newton_method(f, x_0);
 display_newton_method(f, newton_method_values);
 write_intermediate_values(newton_method_values', "results/excel/newton_method.xlsx");
 
-% TODO: plotting 
-% figure(3);
-% plot_function(f, interest_left_end, interest_right_end);
-% plot_selected_points(f, newton_method_x_values);
+% plotting 
+figure(3);
+prep_for_plot([-0.25, 2.5], [-1.25, 1.25]);
+plot_function(f, interest_left_end, interest_right_end);
+plot_selected_points(f, newton_method_values);
