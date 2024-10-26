@@ -3,7 +3,7 @@ function display_newton_method(f, intermediate_values)
     y_min = f(x_min);
 
     iterations = length(intermediate_values);
-    func_calls = iterations * 2;
+    func_calls = iterations * 2 - 2;
 
     % Displaying results
     disp("NEWTON METHOD");
