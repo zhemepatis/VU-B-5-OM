@@ -19,11 +19,19 @@ write_intermediate_values(bisection_method_values, "results/excel/bisection_meth
 
 % plotting
 figure(1);
-prep_for_plot([-0.1, 1.6], [-1.5, 0.2]);
+prep_for_plot([0.3, 1.7], [-1.4, 0.0]);
+plot_function(f);
 
 hold on;
+x_values = [bisection_method_values(:, 2)', bisection_method_values(:, 3)', bisection_method_values(:, 4)'];
+graph = scatter(x_values, f(x_values), "filled"); 
+graph.MarkerFaceColor = '#404DFF';
+graph.DisplayName = "Tarpiniai taškai";
 
-
+x_min = bisection_method_values(end, 3);
+graph = scatter(x_min, f(x_min), "filled"); 
+graph.MarkerFaceColor = '#E57373';
+graph.DisplayName = "Minimumo taškas";
 hold off;
 
 
@@ -35,7 +43,7 @@ hold off;
 
 
 %% GOLDEN RATIO METHOD
-golden_ratio_method_values = golden_ratio_method(f, interest_left_end, interest_right_end)
+golden_ratio_method_values = golden_ratio_method(f, interest_left_end, interest_right_end);
 display_golden_ratio_method(f, golden_ratio_method_values);
 disp(newline);
 write_intermediate_values(golden_ratio_method_values, "results/excel/golden_ratio_method.xlsx");
@@ -43,14 +51,9 @@ write_intermediate_values(golden_ratio_method_values, "results/excel/golden_rati
 % plotting
 figure(2);
 prep_for_plot([0.6, 1.6], [-1.4, -0.4]);
+plot_function(f);
 
 hold on;
-graph = fplot(f);
-graph.Color = '#07bdfa';
-graph.LineStyle = '-';
-graph.LineWidth = 1.8;
-graph.DisplayName = "f(x)";
-
 x_values = [golden_ratio_method_values(:, 2)', golden_ratio_method_values(:, 3)'];
 graph = scatter(x_values, f(x_values), "filled"); 
 graph.MarkerFaceColor = '#404DFF';
@@ -72,14 +75,9 @@ write_intermediate_values(newton_method_values', "results/excel/newton_method.xl
 % plotting 
 figure(3);
 prep_for_plot([0.8, 1.8], [-1.3, -0.3]);
+plot_function(f);
 
 hold on;
-graph = fplot(f);
-graph.Color = '#07bdfa';
-graph.LineStyle = '-';
-graph.LineWidth = 1.8;
-graph.DisplayName = "f(x)";
-
 graph = scatter(newton_method_values, f(newton_method_values), "filled"); 
 graph.MarkerFaceColor = '#404DFF';
 graph.DisplayName = "Tarpiniai taškai";
@@ -87,5 +85,4 @@ graph.DisplayName = "Tarpiniai taškai";
 graph = scatter(newton_method_values(end), f(newton_method_values(end)), "filled"); 
 graph.MarkerFaceColor = '#E57373';
 graph.DisplayName = "Minimumo taškas";
-
 hold off;

@@ -1,18 +1,9 @@
-function plot_function(f, interest_left_end, interest_right_end)
-    x_values = interest_left_end:0.001:interest_right_end;
-
-    % plotting axes
-    xline(0); hold on; 
-    yline(0); hold on;
-
-    xlabel('x');
-    ylabel('y');
-
-    % plotting given function
-    graph = plot(x_values, f(x_values)); hold on;
+function plot_function(f)
+    hold on;
+    graph = fplot(f);
     graph.Color = '#07bdfa';
     graph.LineStyle = '-';
     graph.LineWidth = 1.8;
-
-    grid on;
+    graph.DisplayName = "f(x)";
+    hold off
 end

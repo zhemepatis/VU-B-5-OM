@@ -14,7 +14,7 @@ function prep_for_plot(x_limits, y_limits)
 
     xlabel('x'); 
     ylabel('y');
-    legend('Location', 'best', 'Interpreter', 'latex');
+    legend('Interpreter', 'latex');
 
     hold off;
 end
