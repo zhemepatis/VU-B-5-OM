@@ -1,9 +1,8 @@
 clearvars, clc, close all
 
 % Adding paths
-addpath("utils");
-addpath("display");
-addpath("plot");
+addpath("utils/display");
+addpath("utils/plot");
 
 % Declaring function
 f = @(x) ((x.^2 - 1).^2) / 5 - 1;
@@ -15,7 +14,7 @@ interest_right_end = 10;
 bisection_method_values = bisection_method(f, interest_left_end, interest_right_end);
 display_bisection_method(f, bisection_method_values);
 disp(newline);
-write_intermediate_values(bisection_method_values, "results/excel/bisection_method.xlsx");
+write_intermediate_values(bisection_method_values, "output/excel/bisection_method.xlsx");
 
 % plotting
 figure(1);
@@ -38,7 +37,7 @@ hold off;
 golden_ratio_method_values = golden_ratio_method(f, interest_left_end, interest_right_end);
 display_golden_ratio_method(f, golden_ratio_method_values);
 disp(newline);
-write_intermediate_values(golden_ratio_method_values, "results/excel/golden_ratio_method.xlsx");
+write_intermediate_values(golden_ratio_method_values, "output/excel/golden_ratio_method.xlsx");
 
 % plotting
 figure(2);
@@ -62,7 +61,7 @@ hold off;
 x_0 = 5;
 newton_method_values = newton_method(f, x_0);
 display_newton_method(f, newton_method_values);
-write_intermediate_values(newton_method_values', "results/excel/newton_method.xlsx");
+write_intermediate_values(newton_method_values', "output/excel/newton_method.xlsx");
 
 % plotting 
 figure(3);
