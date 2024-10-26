@@ -34,14 +34,6 @@ graph.MarkerFaceColor = '#E57373';
 graph.DisplayName = "Minimumo taškas";
 hold off;
 
-
-% x_values = bisection_method_values(:, 3);
-
-% figure(1);
-% plot_function(f, interest_left_end, interest_right_end);
-% plot_bisection_method_points(f, x_values);
-
-
 %% GOLDEN RATIO METHOD
 golden_ratio_method_values = golden_ratio_method(f, interest_left_end, interest_right_end);
 display_golden_ratio_method(f, golden_ratio_method_values);
