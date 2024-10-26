@@ -1,6 +1,6 @@
-function plot_selected_points(f, selected_points)
-    graph = scatter(selected_points, f(selected_points), "filled"); hold on;
-    graph.MarkerFaceColor = '#404DFF';
-
-    legend([graph], {'x_i'})
+function plot_selected_points(f, selected_points, color)
+    hold on;
+    graph = scatter(selected_points, f(selected_points), "filled"); 
+    graph.MarkerFaceColor = color;
+    hold off;
 end

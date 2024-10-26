@@ -13,7 +13,7 @@ function intermediate_values = golden_ratio_method(f, interest_left_end, interes
     x2 = left_end + fibonacci_num * interval_length;
     y2 = f(x2);
 
-    intermediate_values = [x1, x2];
+    intermediate_values = [left_end, x1, x2, right_end];
     while interval_length > precision
         if y2 < y1
             left_end = x1;
@@ -35,6 +35,6 @@ function intermediate_values = golden_ratio_method(f, interest_left_end, interes
             y1 = f(x1);
         end
 
-        intermediate_values = [intermediate_values; x1, x2];
+        intermediate_values = [intermediate_values; left_end, x1, x2, right_end];
     end
 end

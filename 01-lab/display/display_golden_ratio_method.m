@@ -1,6 +1,6 @@
 function display_golden_ratio_method(f, intermediate_values)
-    last_x1 = intermediate_values(end, 1);
-    last_x2 = intermediate_values(end, 2);
+    last_x1 = intermediate_values(end, 2);
+    last_x2 = intermediate_values(end, 3);
     
     x_min = (last_x1 + last_x2) / 2;
     y_min = f(x_min);
