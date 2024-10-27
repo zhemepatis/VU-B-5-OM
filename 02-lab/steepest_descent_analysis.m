@@ -12,26 +12,110 @@ grad_y = @(x, y) (x.^2 + 2*x.*y - x)/8;
 % when initial point is (0; 0)
 initial_point = [0, 0];
 results = steepest_descent(f, initial_point, grad_x, grad_y);
-x_values = results(1, :);
-y_values = results(2, :);
-disp("Result: x = " + num2str(x_values(end)) + ", y = " + num2str(y_values(end)) + ", z = " + num2str(f(x_values(end), y_values(end))));
+x_values = results(:, 1)';
+y_values = results(:, 2)';
+
+x_min = x_values(end);
+y_min = y_values(end);
+iterations = size(results, 1);
+func_calls = sum(results(:, 3), 1) + iterations * 2;
+
+% Displaying results
+disp("STEEPEST DESCENT METHOD");
+disp("----------------")
+disp("x_min: " + x_min); 
+disp("y_min: " + y_min);
+disp("z_min: " + f(x_min, y_min));
+disp("----------------")
+disp("Iterations: " + iterations);
+disp("Function calls: " + func_calls);
+disp(newline);
 
 % plotting
-figure(2);
+figure(1);
 prep_for_3d_plot([-0.1, 1.1], [-0.1, 1.1], [-0.1, 1.1]);
 plot_3d_function(f);
 
 hold on;
-scatter3(x_values, y_values, f(x_values, y_values), 'filled', 'MarkerFaceColor', 'r'); 
+graph = plot3(x_values, y_values, f(x_values, y_values));
+graph.Color = '#07bdfa';
+graph.LineStyle = '-';
+graph.LineWidth = 1.8;
+
+graph = scatter3(x_values, y_values, f(x_values, y_values), "filled");
+graph.MarkerFaceColor = '#404DFF';
+graph.DisplayName = "Tarpiniai taškai";
+
+graph = scatter3(x_values(end), y_values(end), f(x_values, y_values), "filled");
+graph.MarkerFaceColor = '#E57373';
+graph.DisplayName = "Minimumo taškas";
 hold off;
 
 
 % when initial point is (1; 1)
 initial_point = [1, 1];
 results = steepest_descent(f, initial_point, grad_x, grad_y);
-x_values = results(1, :);
-y_values = results(2, :);
-disp("Result: x = " + num2str(x_values(end)) + ", y = " + num2str(y_values(end)) + ", z = " + num2str(f(x_values(end), y_values(end))));
+x_values = results(:, 1)';
+y_values = results(:, 2)';
+
+x_min = x_values(end);
+y_min = y_values(end);
+iterations = size(results, 1);
+func_calls = sum(results(:, 3), 1) + iterations * 2;
+
+% Displaying results
+disp("----------------")
+disp("x_min: " + x_min); 
+disp("y_min: " + y_min);
+disp("z_min: " + f(x_min, y_min));
+disp("----------------")
+disp("Iterations: " + iterations);
+disp("Function calls: " + func_calls);
+disp(newline);
+
+% % plotting
+figure(2);
+prep_for_3d_plot([-0.1, 1.1], [-0.1, 1.1], [-0.1, 1.1]);
+plot_3d_function(f);
+
+hold on;
+graph = plot3(x_values, y_values, f(x_values, y_values));
+graph.Color = '#07bdfa';
+graph.LineStyle = '-';
+graph.LineWidth = 1.8;
+
+graph = scatter3(x_values, y_values, f(x_values, y_values), "filled");
+graph.MarkerFaceColor = '#404DFF';
+graph.DisplayName = "Tarpiniai taškai";
+
+x_min = x_values(end);
+y_min = y_values(end);
+graph = scatter3(x_min, y_min, f(x_min, y_min), "filled");
+graph.MarkerFaceColor = '#E57373';
+graph.DisplayName = "Minimumo taškas";
+hold off;
+
+
+% when initial point is (0.1; 0.5)
+initial_point = [1/10, 5/10];
+results = steepest_descent(f, initial_point, grad_x, grad_y);
+x_values = results(:, 1)';
+y_values = results(:, 2)';
+
+x_min = x_values(end);
+y_min = y_values(end);
+iterations = size(results, 1);
+func_calls = sum(results(:, 3), 1) + iterations * 2;
+
+% Displaying results
+disp("----------------")
+disp("x_min: " + x_min); 
+disp("y_min: " + y_min);
+disp("z_min: " + f(x_min, y_min));
+disp("----------------")
+disp("Iterations: " + iterations);
+disp("Function calls: " + func_calls);
+disp(newline);
 
 % plotting
 figure(3);
@@ -39,23 +123,16 @@ prep_for_3d_plot([-0.1, 1.1], [-0.1, 1.1], [-0.1, 1.1]);
 plot_3d_function(f);
 
 hold on;
-scatter3(x_values, y_values, f(x_values, y_values), 'filled', 'MarkerFaceColor', 'r'); 
+graph = plot3(x_values, y_values, f(x_values, y_values));
+graph.Color = '#07bdfa';
+graph.LineStyle = '-';
+graph.LineWidth = 1.8;
+
+graph = scatter3(x_values, y_values, f(x_values, y_values), "filled");
+graph.MarkerFaceColor = '#404DFF';
+graph.DisplayName = "Tarpiniai taškai";
+
+graph = scatter3(x_min, y_min, f(x_min, y_min), "filled");
+graph.MarkerFaceColor = '#E57373';
+graph.DisplayName = "Minimumo taškas";
 hold off;
-
-
-% when initial point is (0.1; 0.5)
-initial_point = [1/10, 5/10];
-results = steepest_descent(f, initial_point, grad_x, grad_y);
-x_values = results(1, :);
-y_values = results(2, :);
-disp("Result: x = " + num2str(x_values(end)) + ", y = " + num2str(y_values(end)) + ", z = " + num2str(f(x_values(end), y_values(end))));
-
-% plotting
-figure(4);
-prep_for_3d_plot([-0.1, 1.1], [-0.1, 1.1], [-0.1, 1.1]);
-plot_3d_function(f);
-
-hold on;
-scatter3(x_values, y_values, f(x_values, y_values), 'filled', 'MarkerFaceColor', 'r'); 
-hold off;
-

@@ -1,36 +1,37 @@
-function selected_points = steepest_descent(f, init_point, grad_x, grad_y)
-    step_size_threshold = 0.0001;
-    step_size = inf;
-    
-    x_values = [init_point(1)];
-    y_values = [init_point(2)];
+function intermediate_values = steepest_descent(f, initial_point, grad_x, grad_y)
+    step_threshold = 0.0001;
+    max_iterations = 100; % protection in case we fall into pit that goes to infty
 
-    iterations = 0;
-    function_calls = 1; % one more function call is needed tin the end when getting value in min point
+    x_val = initial_point(1);
+    y_val = initial_point(2);
 
-    while step_size > step_size_threshold
-        x_val = x_values(end);
-        y_val = y_values(end);
+    gamma = inf;
+    intermediate_values = [initial_point, 0];
+    while gamma > step_threshold
+        grad_x_val = - grad_x(x_val, y_val);
+        grad_y_val = - grad_y(x_val, y_val);
+        if grad_x_val == 0 && grad_y_val == 0
+            break
+        end
+        gradient_norm = sqrt(grad_x_val^2 + grad_y_val^2);
 
-        grad_x_val = grad_x(x_val, y_val);
-        grad_y_val = grad_y(x_val, y_val);
-        function_calls = function_calls + 2;
+        grad_x_val = grad_x_val / gradient_norm;
+        grad_y_val = grad_y_val / gradient_norm;
 
-        [gamma, bm_function_calls] = bisection_method(f, [x_val, y_val], [grad_x_val, grad_y_val], 0, 1);
-        function_calls = function_calls + bm_function_calls;
-        next_x_val = x_val - gamma*grad_x_val;
-        next_y_val = y_val - gamma*grad_y_val;
-        
-        x_values = [x_values, next_x_val];
-        y_values = [y_values, next_y_val];
+        gamma_func = @(gamma) f(x_val + gamma * grad_x_val, y_val + gamma * grad_y_val);
+        bm_results = bisection_method(gamma_func, 0, 0.5);
+        gamma = bm_results(end, 3);
+        iterations = size(bm_results, 1);
+        func_calls = (iterations - 1) * 2 + 1;
 
-        step_size = sqrt((next_x_val - x_val)^2 + (next_y_val - y_val)^2);
+        x_val = x_val + gamma*grad_x_val;
+        y_val = y_val + gamma*grad_y_val;
 
-        iterations = iterations + 1; 
+        intermediate_values = [intermediate_values; x_val, y_val, func_calls];
+
+        if size(intermediate_values, 1) == max_iterations
+            intermediate_values = [];
+            break
+        end
     end
-
-    selected_points = [x_values; y_values];
-
-    disp("Iterations: " + num2str(iterations));
-    disp("Function calls: " + num2str(function_calls));
 end
