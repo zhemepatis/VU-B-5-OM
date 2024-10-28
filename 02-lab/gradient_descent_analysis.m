@@ -9,7 +9,7 @@ grad_x = @(x, y) (2*x.*y + y.^2 - y)/8;
 grad_y = @(x, y) (x.^2 + 2*x.*y - x)/8;
 
 %% gradient descent method analysis
-gamma = 2.66666;
+gamma = 2.4;
 
 % when initial point is (0; 0)
 initial_point = [0, 0];

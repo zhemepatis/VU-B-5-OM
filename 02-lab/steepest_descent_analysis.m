@@ -5,13 +5,12 @@ addpath("utilities");
 
 %% defining objective function and its gradient
 f = @(x, y) (y.*x.^2 + x.*y.^2 - x.*y)/8;
-grad_x = @(x, y) (2*x.*y + y.^2 - y)/8;
-grad_y = @(x, y) (x.^2 + 2*x.*y - x)/8;
+grad = @(x, y) [(2*x.*y + y.^2 - y)/8, (x.^2 + 2*x.*y - x)/8];
 
-%% steepest descent method analysis
+% steepest descent method analysis
 % when initial point is (0; 0)
 initial_point = [0, 0];
-results = steepest_descent(f, initial_point, grad_x, grad_y);
+results = steepest_descent(f, initial_point, grad);
 x_values = results(:, 1)';
 y_values = results(:, 2)';
 
@@ -46,7 +45,9 @@ graph = scatter3(x_values, y_values, f(x_values, y_values), "filled");
 graph.MarkerFaceColor = '#404DFF';
 graph.DisplayName = "Tarpiniai taškai";
 
-graph = scatter3(x_values(end), y_values(end), f(x_values, y_values), "filled");
+x_min = x_values(end);
+y_min = y_values(end);
+graph = scatter3(x_min, y_min, f(x_min, y_min), "filled");
 graph.MarkerFaceColor = '#E57373';
 graph.DisplayName = "Minimumo taškas";
 hold off;
@@ -54,7 +55,7 @@ hold off;
 
 % when initial point is (1; 1)
 initial_point = [1, 1];
-results = steepest_descent(f, initial_point, grad_x, grad_y);
+results = steepest_descent(f, initial_point, grad)
 x_values = results(:, 1)';
 y_values = results(:, 2)';
 
@@ -73,7 +74,7 @@ disp("Iterations: " + iterations);
 disp("Function calls: " + func_calls);
 disp(newline);
 
-% % plotting
+% plotting
 figure(2);
 prep_for_3d_plot([-0.1, 1.1], [-0.1, 1.1], [-0.1, 1.1]);
 plot_3d_function(f);
@@ -88,8 +89,6 @@ graph = scatter3(x_values, y_values, f(x_values, y_values), "filled");
 graph.MarkerFaceColor = '#404DFF';
 graph.DisplayName = "Tarpiniai taškai";
 
-x_min = x_values(end);
-y_min = y_values(end);
 graph = scatter3(x_min, y_min, f(x_min, y_min), "filled");
 graph.MarkerFaceColor = '#E57373';
 graph.DisplayName = "Minimumo taškas";
@@ -98,7 +97,7 @@ hold off;
 
 % when initial point is (0.1; 0.5)
 initial_point = [1/10, 5/10];
-results = steepest_descent(f, initial_point, grad_x, grad_y);
+results = steepest_descent(f, initial_point, grad);
 x_values = results(:, 1)';
 y_values = results(:, 2)';
 
@@ -115,7 +114,6 @@ disp("z_min: " + f(x_min, y_min));
 disp("----------------")
 disp("Iterations: " + iterations);
 disp("Function calls: " + func_calls);
-disp(newline);
 
 % plotting
 figure(3);
