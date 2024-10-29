@@ -10,16 +10,28 @@ grad_y = @(x, y) (x.^2 + 2*x.*y - x)/8;
 
 % parameters
 shrink_coef = 0.5;
-alfa = 0.4;
 
 %% when initial point is (0; 0)
 initial_point = [0, 0];
-results = deformed_simplex(f, initial_point, alfa, shrink_coef);
+[iterations, func_calls, results] = deformed_simplex(f, initial_point, 0.4, shrink_coef);
 x_values = results(:, 1);
 y_values = results(:, 2);
 z_values = results(:, 3);
-mid_points = [0.4899, 0.489; 0.5088, 0.2260; 0.3014, 0.2307];
-disp("Result: x = " + num2str(x_values(end)) + ", y = " + num2str(y_values(end)) + ", z = " + num2str(z_values(end)));
+
+x_min = x_values(end);
+y_min = y_values(end);
+z_min = z_values(end);
+
+% Displaying results
+disp("DEFORMED SIMPLEX METHOD");
+disp("----------------")
+disp("x_min: " + x_min); 
+disp("y_min: " + y_min);
+disp("z_min: " + z_min);
+disp("----------------")
+disp("Iterations: " + iterations);
+disp("Function calls: " + func_calls);
+disp(newline);
 
 % plotting
 figure(1);
@@ -39,11 +51,24 @@ hold off;
 
 %% when initial point is (1; 1)
 initial_point = [1, 1];
-results = deformed_simplex(f, initial_point, -alfa, shrink_coef);
+[iterations, func_calls, results] = deformed_simplex(f, initial_point, -0.37, shrink_coef);
 x_values = results(:, 1);
 y_values = results(:, 2);
 z_values = results(:, 3);
-disp("Result: x = " + num2str(x_values(end)) + ", y = " + num2str(y_values(end)) + ", z = " + num2str(z_values(end)));
+
+x_min = x_values(end);
+y_min = y_values(end);
+z_min = z_values(end);
+
+% Displaying results
+disp("----------------")
+disp("x_min: " + x_min); 
+disp("y_min: " + y_min);
+disp("z_min: " + z_min);
+disp("----------------")
+disp("Iterations: " + iterations);
+disp("Function calls: " + func_calls);
+disp(newline);
 
 % plotting
 figure(2);
@@ -63,11 +88,24 @@ hold off;
 
 %% when initial point is (0.1; 0.5)
 initial_point = [1/10, 5/10];
-results = deformed_simplex(f, initial_point, -alfa, shrink_coef);
+[iterations, func_calls, results] = deformed_simplex(f, initial_point, -0.3, shrink_coef);
 x_values = results(:, 1);
 y_values = results(:, 2);
 z_values = results(:, 3);
-disp("Result: x = " + num2str(x_values(end)) + ", y = " + num2str(y_values(end)) + ", z = " + num2str(z_values(end)));
+
+x_min = x_values(end);
+y_min = y_values(end);
+z_min = z_values(end);
+
+% Displaying results
+disp("----------------")
+disp("x_min: " + x_min); 
+disp("y_min: " + y_min);
+disp("z_min: " + z_min);
+disp("----------------")
+disp("Iterations: " + iterations);
+disp("Function calls: " + func_calls);
+disp(newline);
 
 % plotting
 figure(3);

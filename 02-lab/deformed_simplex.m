@@ -1,6 +1,6 @@
-function intermediate_values = deformed_simplex(f, initial_point, alfa, shrink_coef)
+function [iterations, func_calls, intermediate_values] = deformed_simplex(f, initial_point, alfa, shrink_coef)
     step_threshold = 0.0001;
-    max_iteration_num = 50;
+    max_iteration_num = 100;
     max_point_repetition_num = 3;
 
     gamma = 2;
@@ -70,9 +70,6 @@ function intermediate_values = deformed_simplex(f, initial_point, alfa, shrink_c
         iterations = iterations + 1;
         area = get_simplex_area(simplex);
     end
-
-    disp("Iterations: " + num2str(iterations));
-    disp("Function calls: " + num2str(func_calls));
 end
 
 function simplex = get_initial_simplex(f, initial_point, alfa)
