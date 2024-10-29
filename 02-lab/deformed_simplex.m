@@ -1,6 +1,6 @@
 function intermediate_values = deformed_simplex(f, initial_point, alfa, shrink_coef)
     step_threshold = 0.0001;
-    max_iteration_num = 4;
+    max_iteration_num = 50;
     max_point_repetition_num = 3;
 
     gamma = 2;
@@ -25,12 +25,14 @@ function intermediate_values = deformed_simplex(f, initial_point, alfa, shrink_c
         best_point = simplex(3, :);
 
         if check_simplex_for_repetition(simplex, intermediate_values, max_point_repetition_num)
-            simplex = shrink_simplex(f, best_point, shrink_coef);
+            simplex = shrink_simplex(f, simplex, shrink_coef);
             simplex = sort_simplex(simplex);
 
             intermediate_values = [intermediate_values; simplex];
             func_calls = func_calls + 2;
+
             iterations = iterations + 1;
+            area = get_simplex_area(simplex);
             continue
         end
 
@@ -66,7 +68,11 @@ function intermediate_values = deformed_simplex(f, initial_point, alfa, shrink_c
         intermediate_values = [intermediate_values; simplex];
 
         iterations = iterations + 1;
+        area = get_simplex_area(simplex);
     end
+
+    disp("Iterations: " + num2str(iterations));
+    disp("Function calls: " + num2str(func_calls));
 end
 
 function simplex = get_initial_simplex(f, initial_point, alfa)
@@ -127,7 +133,7 @@ end
 
 % assumes that simplex is sorted
 function midpoint = get_middle_point(simplex)
-    midpoint = sum(simplex)/2;
+    midpoint = sum(simplex(2:3, :))/2;
 end
 
 function point = get_new_point(worst_point, midpoint, theta)
@@ -164,4 +170,11 @@ function has_repetition = check_simplex_for_repetition(simplex, past_simplexes, 
             break
         end
     end
+end
+
+function area = get_simplex_area(simplex)
+    point_1 = simplex(1, :);
+    point_2 = simplex(2, :);
+    point_3 = simplex(3, :);
+    area = abs(point_1(1)*(point_2(2) - point_3(2)) + point_2(1)*(point_3(2) - point_1(2)) + point_3(1)*(point_1(2) - point_2(2)) ) / 2;
 end
