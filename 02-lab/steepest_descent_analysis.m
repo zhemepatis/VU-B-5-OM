@@ -10,8 +10,8 @@ grad = @(x, y) [(2*x.*y + y.^2 - y)/8, (x.^2 + 2*x.*y - x)/8];
 % steepest descent method analysis
 % when initial point is (0; 0)
 initial_point = [0, 0];
-[iterations, func_calls, results] = steepest_descent(f, initial_point, grad);
-write_intermediate_values(results, "output/excel/steepest_descent_method_0_0.xlsx");
+[iterations, func_calls, gammas, results] = steepest_descent(f, initial_point, grad);
+write_intermediate_values([results, gammas], "output/excel/steepest_descent_method_0_0.xlsx");
 x_values = results(:, 1)';
 y_values = results(:, 2)';
 
@@ -54,8 +54,8 @@ hold off;
 
 % when initial point is (1; 1)
 initial_point = [1, 1];
-[iterations, func_calls, results] = steepest_descent(f, initial_point, grad);
-write_intermediate_values(results, "output/excel/steepest_descent_method_1_1.xlsx");
+[iterations, func_calls, gammas, results] = steepest_descent(f, initial_point, grad);
+write_intermediate_values([results, gammas], "output/excel/steepest_descent_method_1_1.xlsx");
 x_values = results(:, 1)';
 y_values = results(:, 2)';
 
@@ -95,8 +95,8 @@ hold off;
 
 % when initial point is (0.1; 0.5)
 initial_point = [1/10, 5/10];
-[iterations, func_calls, results] = steepest_descent(f, initial_point, grad);
-write_intermediate_values(results, "output/excel/steepest_descent_method_custom_point.xlsx");
+[iterations, func_calls, gammas, results] = steepest_descent(f, initial_point, grad);
+write_intermediate_values([results, gammas], "output/excel/steepest_descent_method_custom_point.xlsx");
 x_values = results(:, 1)';
 y_values = results(:, 2)';
 
