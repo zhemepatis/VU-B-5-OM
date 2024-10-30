@@ -10,14 +10,12 @@ grad = @(x, y) [(2*x.*y + y.^2 - y)/8, (x.^2 + 2*x.*y - x)/8];
 % steepest descent method analysis
 % when initial point is (0; 0)
 initial_point = [0, 0];
-results = steepest_descent(f, initial_point, grad);
+[iterations, func_calls, results] = steepest_descent(f, initial_point, grad);
 x_values = results(:, 1)';
 y_values = results(:, 2)';
 
 x_min = x_values(end);
 y_min = y_values(end);
-iterations = size(results, 1);
-func_calls = sum(results(:, 3), 1) + iterations * 2;
 
 % Displaying results
 disp("STEEPEST DESCENT METHOD");
@@ -55,14 +53,12 @@ hold off;
 
 % when initial point is (1; 1)
 initial_point = [1, 1];
-results = steepest_descent(f, initial_point, grad)
+[iterations, func_calls, results] = steepest_descent(f, initial_point, grad);
 x_values = results(:, 1)';
 y_values = results(:, 2)';
 
 x_min = x_values(end);
 y_min = y_values(end);
-iterations = size(results, 1);
-func_calls = sum(results(:, 3), 1) + iterations * 2;
 
 % Displaying results
 disp("----------------")
@@ -97,14 +93,12 @@ hold off;
 
 % when initial point is (0.1; 0.5)
 initial_point = [1/10, 5/10];
-results = steepest_descent(f, initial_point, grad);
+[iterations, func_calls, results] = steepest_descent(f, initial_point, grad);
 x_values = results(:, 1)';
 y_values = results(:, 2)';
 
 x_min = x_values(end);
 y_min = y_values(end);
-iterations = size(results, 1);
-func_calls = sum(results(:, 3), 1) + iterations * 2;
 
 % Displaying results
 disp("----------------")
