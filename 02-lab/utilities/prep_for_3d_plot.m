@@ -11,6 +11,7 @@ function prep_for_3d_plot(x_limits, y_limits, z_limits)
     zlabel('z');
 
     grid on;
+    legend('Interpreter', 'latex');
 
     hold off;
 end

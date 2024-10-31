@@ -44,6 +44,7 @@ graph = plot3(x_values, y_values, f(x_values, y_values));
 graph.Color = '#07bdfa';
 graph.LineStyle = '-';
 graph.LineWidth = 1.8;
+graph.DisplayName = "Metodo trajektorija";
 
 graph = scatter3(x_values, y_values, f(x_values, y_values), "filled");
 graph.MarkerFaceColor = '#404DFF';
@@ -89,6 +90,7 @@ graph = plot3(x_values, y_values, f(x_values, y_values));
 graph.Color = '#07bdfa';
 graph.LineStyle = '-';
 graph.LineWidth = 1.8;
+graph.DisplayName = "Metodo trajektorija";
 
 graph = scatter3(x_values, y_values, f(x_values, y_values), "filled");
 graph.MarkerFaceColor = '#404DFF';
@@ -134,6 +136,7 @@ graph = plot3(x_values, y_values, f(x_values, y_values));
 graph.Color = '#07bdfa';
 graph.LineStyle = '-';
 graph.LineWidth = 1.8;
+graph.DisplayName = "Metodo trajektorija";
 
 graph = scatter3(x_values, y_values, f(x_values, y_values), "filled");
 graph.MarkerFaceColor = '#404DFF';

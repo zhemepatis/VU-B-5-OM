@@ -1,15 +1,14 @@
 function plot_3d_function(f)
-    x_values = -0:0.05:1.1;
-    y_values = x_values';
-
+    x_values = 0:0.05:1.1;
+    y_values = x_values;
+    
+    [X, Y] = meshgrid(x_values, y_values);
+    Z = f(X, Y);
+    
     hold on; 
-
-    xlabel('x');
-    ylabel('y');
-
-    % plotting given function
-    graph = contour3(x_values, y_values, f(x_values, y_values), "EdgeColor", 'b');
-
+    contour3(X, Y, Z);
+    legend("Tikslo funkcija");
     grid on; 
+    
     hold off;
 end
