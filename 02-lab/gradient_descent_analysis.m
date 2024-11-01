@@ -156,4 +156,3 @@ graph = scatter3(x_min, y_min, f(x_min, y_min), "filled");
 graph.MarkerFaceColor = '#E57373';
 graph.DisplayName = "Minimumo taškas";
 hold off;
-

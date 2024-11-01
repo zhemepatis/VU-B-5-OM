@@ -10,9 +10,15 @@ function [iterations, func_calls, intermediate_values] = gradient_descent(init_p
     func_calls = 1; % one more function call is needed tin the end when getting value in min point
     while step_size > step_size_threshold
         curr_grad = grad(x_val, y_val);
+        func_calls = func_calls + 2;
+        
+        grad_norm = sqrt(curr_grad(1)^2 + curr_grad(2)^2);
+        if grad_norm == 0
+            break;
+        end
+
         next_x_val = x_val - gamma * curr_grad(1);
         next_y_val = y_val - gamma * curr_grad(2);
-        func_calls = func_calls + 2;
 
         step_size = sqrt((next_x_val - x_val)^2 + (next_y_val - y_val)^2);
         iterations = iterations + 1;
