@@ -6,5 +6,5 @@ function plot_simplex(f, points, color)
     graph = plot3(x_values, y_values, f(x_values, y_values));
     graph.Color = color;
     graph.LineWidth = 1.8;
-    graph.DisplayName = "Metodo trajektorija";
+    graph.HandleVisibility = "off";
 end

@@ -41,12 +41,17 @@ plot_3d_function(f);
 
 hold on;
 simplex_count = size(results, 1) / 3;
-for idx = 1:simplex_count
+for idx = (simplex_count - 4):simplex_count
     simplex_start = 3*(idx - 1) + 1;
     simplex_end = simplex_start + 2;
     plot_simplex(f, results(simplex_start:simplex_end, :), '#07bdfa');
 end
-scatter3(x_values, y_values, z_values, 'filled', 'MarkerFaceColor', 'r');
+
+graph = scatter3(x_values, y_values, z_values, 'filled', 'MarkerFaceColor', '#404DFF');
+graph.DisplayName = "Simplekso taškai";
+
+graph = scatter3(x_min, y_min, z_min, 'filled', 'MarkerFaceColor', '#E57373');
+graph.DisplayName = "Minimumo taškas";
 hold off;
 
 
@@ -79,12 +84,17 @@ plot_3d_function(f);
 
 hold on;
 simplex_count = size(results, 1) / 3;
-for idx = 1:simplex_count
+for idx = (simplex_count - 4):simplex_count
     simplex_start = 3*(idx - 1) + 1;
     simplex_end = simplex_start + 2;
     plot_simplex(f, results(simplex_start:simplex_end, :), '#07bdfa');
 end
-scatter3(x_values, y_values, z_values, 'filled', 'MarkerFaceColor', 'r'); 
+
+graph = scatter3(x_values, y_values, z_values, 'filled', 'MarkerFaceColor', '#404DFF');
+graph.DisplayName = "Simplekso taškai";
+
+graph = scatter3(x_min, y_min, z_min, 'filled', 'MarkerFaceColor', '#E57373');
+graph.DisplayName = "Minimumo taškas";
 hold off;
 
 
@@ -117,11 +127,16 @@ plot_3d_function(f);
 
 hold on;
 simplex_count = size(results, 1) / 3;
-for idx = 1:simplex_count
+for idx = (simplex_count - 4):simplex_count
     simplex_start = 3*(idx - 1) + 1;
     simplex_end = simplex_start + 2;
     plot_simplex(f, results(simplex_start:simplex_end, :), '#07bdfa');
 end
-scatter3(x_values, y_values, z_values, 'filled', 'MarkerFaceColor', 'r'); 
+
+graph = scatter3(x_values, y_values, z_values, 'filled', 'MarkerFaceColor', '#404DFF');
+graph.DisplayName = "Simplekso taškai";
+
+graph = scatter3(x_min, y_min, z_min, 'filled', 'MarkerFaceColor', '#E57373');
+graph.DisplayName = "Minimumo taškas";
 hold off;
 

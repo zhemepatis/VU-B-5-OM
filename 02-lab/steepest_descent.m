@@ -1,7 +1,6 @@
-function [iterations, func_calls, gammas, intermediate_values] = steepest_descent(f, initial_point, grad)
+function [iterations, func_calls, gammas, intermediate_values] = steepest_descent(f, initial_point, grad, gamma_range)
     step_threshold = 0.0001;
     max_iterations = 100; % protection in case we fall into pit that goes to infty
-    possible_gamma = 1;
 
     gammas = -1;
     intermediate_values = initial_point;
@@ -25,7 +24,7 @@ function [iterations, func_calls, gammas, intermediate_values] = steepest_descen
         grad_y_val = grad_y_val / grad_norm;
 
         gamma_func = @(gamma) f(x_val + gamma * grad_x_val, y_val + gamma * grad_y_val);      
-        [~, grm_func_calls, grm_results] = golden_ratio_method(gamma_func, 0, possible_gamma);
+        [~, grm_func_calls, grm_results] = golden_ratio_method(gamma_func, 0, gamma_range(1), gamma_range(2));
         gamma = grm_results(end, 3);
         
         next_x_val = x_val + gamma*grad_x_val;
