@@ -11,9 +11,13 @@ grad = @(x, y) [(2*x.*y + y.^2 - y)/8, (x.^2 + 2*x.*y - x)/8];
 % when initial point is (0; 0)
 initial_point = [0, 0];
 [iterations, func_calls, gammas, results] = steepest_descent(f, initial_point, grad, [0, 0.8]);
-write_intermediate_values([results, gammas], "output/excel/steepest_descent_method_0_0.xlsx");
-x_values = results(:, 1)';
-y_values = results(:, 2)';
+
+x_values = results(:, 1);
+y_values = results(:, 2);
+z_values = f(x_values, y_values);
+grad_values = grad(x_values, y_values);
+table_data = [x_values y_values, z_values, grad_values, gammas];
+write_intermediate_values(table_data, "output/excel/steepest_descent_method_0_0.xlsx");
 
 x_min = x_values(end);
 y_min = y_values(end);
@@ -56,9 +60,13 @@ hold off;
 % when initial point is (1; 1)
 initial_point = [1, 1];
 [iterations, func_calls, gammas, results] = steepest_descent(f, initial_point, grad, [0, 0.8]);
-write_intermediate_values([results, gammas], "output/excel/steepest_descent_method_1_1.xlsx");
-x_values = results(:, 1)';
-y_values = results(:, 2)';
+
+x_values = results(:, 1);
+y_values = results(:, 2);
+z_values = f(x_values, y_values);
+grad_values = grad(x_values, y_values);
+table_data = [x_values y_values, z_values, grad_values, gammas];
+write_intermediate_values(table_data, "output/excel/steepest_descent_method_1_1.xlsx");
 
 x_min = x_values(end);
 y_min = y_values(end);
@@ -97,10 +105,14 @@ hold off;
 
 % when initial point is (0.1; 0.5)
 initial_point = [1/10, 5/10];
-[iterations, func_calls, gammas, results] = steepest_descent(f, initial_point, grad, [-0.2, 0.8]);
-write_intermediate_values([results, gammas], "output/excel/steepest_descent_method_custom_point.xlsx");
-x_values = results(:, 1)';
-y_values = results(:, 2)';
+[iterations, func_calls, gammas, results] = steepest_descent(f, initial_point, grad, [0, 0.8]);
+
+x_values = results(:, 1);
+y_values = results(:, 2);
+z_values = f(x_values, y_values);
+grad_values = grad(x_values, y_values);
+table_data = [x_values y_values, z_values, grad_values, gammas];
+write_intermediate_values(table_data, "output/excel/steepest_descent_method_custom_point.xlsx");
 
 x_min = x_values(end);
 y_min = y_values(end);

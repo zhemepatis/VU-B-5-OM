@@ -14,6 +14,7 @@ function [iterations, func_calls, intermediate_values] = gradient_descent(init_p
         
         grad_norm = sqrt(curr_grad(1)^2 + curr_grad(2)^2);
         if grad_norm == 0
+            iterations = iterations + 1;
             break;
         end
 

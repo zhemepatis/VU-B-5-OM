@@ -12,8 +12,10 @@ function [iterations, func_calls, gammas, intermediate_values] = steepest_descen
     iterations = 1;
     while step_size > step_threshold && iterations < max_iterations
         curr_grad = grad(x_val, y_val);
+        func_calls = func_calls + 2;
         grad_norm = sqrt(curr_grad(1)^2 + curr_grad(2)^2);
         if grad_norm == 0
+            iterations = iterations + 1;
             break;
         end
 
@@ -25,6 +27,7 @@ function [iterations, func_calls, gammas, intermediate_values] = steepest_descen
 
         gamma_func = @(gamma) f(x_val + gamma * grad_x_val, y_val + gamma * grad_y_val);      
         [~, grm_func_calls, grm_results] = golden_ratio_method(gamma_func, gamma_range(1), gamma_range(2));
+        func_calls = func_calls + grm_func_calls;
         gamma = grm_results(end, 3);
         
         next_x_val = x_val + gamma*grad_x_val;
@@ -36,7 +39,6 @@ function [iterations, func_calls, gammas, intermediate_values] = steepest_descen
         
         intermediate_values = [intermediate_values; x_val, y_val];
         gammas = [gammas; gamma];
-        func_calls = func_calls + grm_func_calls + 2;
         iterations = iterations + 1;
     end
 end
