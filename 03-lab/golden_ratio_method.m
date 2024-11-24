@@ -1,4 +1,4 @@
-function [iterations, func_calls, intermediate_values] = golden_ratio_method(f, interest_left_end, interest_right_end, epsilon)
+function [iterations, func_calls, intermediate_values] = golden_ratio_method(f, interest_left_end, interest_right_end, epsilon, max_iter)
     fibonacci_num = (-1 + sqrt(5)) / 2;
     
     % Initial values
@@ -14,7 +14,7 @@ function [iterations, func_calls, intermediate_values] = golden_ratio_method(f, 
     iterations = 1;
     func_calls = 2;
     intermediate_values = [left_end, x1, x2, right_end];
-    while interval_length > epsilon
+    while interval_length > epsilon && iterations < max_iter
         if y2 < y1
             left_end = x1;
             interval_length = right_end - left_end;
