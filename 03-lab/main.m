@@ -8,7 +8,7 @@ h = @(x, y, z) [-x, -y, -z];
 
 % penalty functions
 b = @(x, y, z) g(x, y, z)^2 + sum(max(0, h(x, y, z)).^2);
-B = @(x, y, z, r) f(x, y, z) + (1 / r) * b(x, y, z);
+B = @(x, y, z, r) f(x, y, z) + b(x, y, z) / r;
 
 % gradient
 grad = @(x, y, z, r) [
@@ -20,17 +20,15 @@ grad = @(x, y, z, r) [
 %% parameters
 init_r = 0.5;
 
-%% applying method
+% applying method
 init_point = [0, 0, 0];
-results = penalty_method(init_point, init_r, 5, grad, 0.01, 10^(-6));
+results = penalty_method(B, init_point, init_r, 0.3, 5, grad, 1, 10^(-1))
 writematrix(results, "output/penalty_method_0_0.xlsx");
 
 init_point = [1, 1, 1];
-results = penalty_method(init_point, init_r, 5, grad, 0.01, 10^(-6));
+results = penalty_method(B, init_point, init_r, 0.3, 5, grad, 1, 10^(-1))
 writematrix(results, "output/penalty_method_1_1.xlsx");
 
 init_point = [8/10, 1/10, 5/10];
-results = penalty_method(init_point, init_r, 5, grad, 0.01, 10^(-6))
+results = penalty_method(B, init_point, init_r, 0.8, 5, grad, 1, 10^(-1))
 writematrix(results, "output/penalty_method_custom.xlsx");
-
-% reikia ciklo, nes mazinant paramettra pradinis taskas tampa nebe init_point, bet min taskas rastas su r parametru buvusiu pries tai

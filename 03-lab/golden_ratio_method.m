@@ -1,6 +1,4 @@
-function [iterations, func_calls, intermediate_values] = golden_ratio_method(f, interest_left_end, interest_right_end)
-    precision = 10^(-4); % Method precision (when to stop)
-
+function [iterations, func_calls, intermediate_values] = golden_ratio_method(f, interest_left_end, interest_right_end, epsilon)
     fibonacci_num = (-1 + sqrt(5)) / 2;
     
     % Initial values
@@ -16,7 +14,7 @@ function [iterations, func_calls, intermediate_values] = golden_ratio_method(f, 
     iterations = 1;
     func_calls = 2;
     intermediate_values = [left_end, x1, x2, right_end];
-    while interval_length > precision
+    while interval_length > epsilon
         if y2 < y1
             left_end = x1;
             interval_length = right_end - left_end;
