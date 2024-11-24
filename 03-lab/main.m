@@ -7,8 +7,8 @@ g = @(x, y, z) 2 * (x .* y + x .* z + z .* y) - 1;
 h = @(x, y, z) [-x, -y, -z];
 
 % penalty functions
-b = @(x, y, z) g(x, y, z)^2 + sum(max(0, h(x, y, z)).^2);
-B = @(x, y, z, r) f(x, y, z) + b(x, y, z) / r;
+b = @(x, y, z) g(x, y, z).^2 + sum(max(0, h(x, y, z)).^2);
+B = @(x, y, z, r) f(x, y, z) + b(x, y, z) ./ r;
 
 % gradient
 grad = @(x, y, z, r) [
@@ -23,14 +23,21 @@ init_r = 0.5;
 % applying method
 init_point = [0, 0, 0];
 results = penalty_method(B, init_point, init_r, 0.5, 5, grad, 1, 10^(-1));
-writematrix(results, "output/penalty_method_0_0.xlsx");
+B_results = B(results(:, 2), results(:, 3), results(:, 4), results(:, 1));
+f_results = f(results(:, 2), results(:, 3), results(:, 4));
+result_table = [results(:, 1:4), f_results, B_results(:, 1), results(:, 5:6)]
+writematrix(result_table, "output/penalty_method_0_0.xlsx");
 
 init_point = [1, 1, 1];
-results = penalty_method(B, init_point, init_r, 0.3, 5, grad, 1, 10^(-1))
-f(results(end, 2), results(end, 3), results(end, 4))
-writematrix(results, "output/penalty_method_1_1.xlsx");
+results = penalty_method(B, init_point, init_r, 0.3, 5, grad, 1, 10^(-1));
+B_results = B(results(:, 2), results(:, 3), results(:, 4), results(:, 1));
+f_results = f(results(:, 2), results(:, 3), results(:, 4));
+result_table = [results(:, 1:4), f_results, B_results(:, 1), results(:, 5:6)]
+writematrix(result_table, "output/penalty_method_1_1.xlsx");
 
 init_point = [8/10, 1/10, 5/10];
-results = penalty_method(B, init_point, init_r, 0.9, 5, grad, 0.9, 10^(-1))
-f(results(end, 2), results(end, 3), results(end, 4))
-writematrix(results, "output/penalty_method_custom.xlsx");
+results = penalty_method(B, init_point, init_r, 0.7, 5, grad, 0.8, 10^(-4));
+B_results = B(results(:, 2), results(:, 3), results(:, 4), results(:, 1));
+f_results = f(results(:, 2), results(:, 3), results(:, 4));
+result_table = [results(:, 1:4), f_results, B_results(:, 1), results(:, 5:6)]
+writematrix(result_table, "output/penalty_method_custom.xlsx");
