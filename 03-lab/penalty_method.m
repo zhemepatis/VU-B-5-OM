@@ -6,7 +6,7 @@ function intermediate_values = penalty_method(f, init_point, r, r_coef, iteratio
         intermediate_values = [intermediate_values; r, results(end, :), sdm_iterations, sdm_func_calls];
         
         r = r * r_coef;
-        epsilon = max(10^(-4), epsilon / 10);
+        epsilon = epsilon / 10;
         
         init_point = results(end, :);
         iteration = iteration + 1;

@@ -21,7 +21,7 @@ function [iterations, func_calls, gammas, intermediate_values] = steepest_descen
         direction = - curr_grad / grad_norm;
 
         gamma_func = @(gamma) f(x_val + gamma * direction(1), y_val + gamma * direction(2), z_val + gamma * direction(3), r);      
-        [~, grm_func_calls, grm_results] = golden_ratio_method(gamma_func, 0, max_gamma, epsilon, 40);
+        [~, grm_func_calls, grm_results] = golden_ratio_method(gamma_func, 0, max_gamma, epsilon, 30);
         func_calls = func_calls + grm_func_calls;
         gamma = grm_results(end, 3);
         

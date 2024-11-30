@@ -18,26 +18,30 @@ grad = @(x, y, z, r) [
 ];
 
 %% parameters
-init_r = 0.5;
+init_r = .5;
 
 % applying method
 init_point = [0, 0, 0];
-results = penalty_method(B, init_point, init_r, 0.5, 5, grad, 1, 10^(-1));
+results = penalty_method(B, init_point, init_r, .5, 10, grad, 1, 10^(-4));
 B_results = B(results(:, 2), results(:, 3), results(:, 4), results(:, 1));
+b_results = b(results(:, 2), results(:, 3), results(:, 4)) ./ results(:, 1);
 f_results = f(results(:, 2), results(:, 3), results(:, 4));
-result_table = [results(:, 1:4), f_results, B_results(:, 1), results(:, 5:6)]
+result_table = [results(:, 1:4), f_results, B_results(:, 1), b_results(:, 1), results(:, 5:6)]
 writematrix(result_table, "output/penalty_method_0_0.xlsx");
 
 init_point = [1, 1, 1];
-results = penalty_method(B, init_point, init_r, 0.3, 5, grad, 1, 10^(-1));
+results = penalty_method(B, init_point, init_r, .5, 10, grad, 1, 10^(-4));
 B_results = B(results(:, 2), results(:, 3), results(:, 4), results(:, 1));
+b_results = b(results(:, 2), results(:, 3), results(:, 4)) ./ results(:, 1);
 f_results = f(results(:, 2), results(:, 3), results(:, 4));
-result_table = [results(:, 1:4), f_results, B_results(:, 1), results(:, 5:6)]
+result_table = [results(:, 1:4), f_results, B_results(:, 1), b_results(:, 1), results(:, 5:6)]
 writematrix(result_table, "output/penalty_method_1_1.xlsx");
 
-init_point = [8/10, 1/10, 5/10];
-results = penalty_method(B, init_point, init_r, 0.7, 5, grad, 0.8, 10^(-4));
+init_point = [.8, .1, .5];
+results = penalty_method(B, init_point, init_r, .7, 10, grad, .8, 10^(-4));
 B_results = B(results(:, 2), results(:, 3), results(:, 4), results(:, 1));
+b_results = b(results(:, 2), results(:, 3), results(:, 4)) ./ results(:, 1);
 f_results = f(results(:, 2), results(:, 3), results(:, 4));
-result_table = [results(:, 1:4), f_results, B_results(:, 1), results(:, 5:6)]
+result_table = [results(:, 1:4), f_results, B_results(:, 1), b_results(:, 1), results(:, 5:6)]
 writematrix(result_table, "output/penalty_method_custom.xlsx");
+
