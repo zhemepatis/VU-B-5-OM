@@ -21,6 +21,8 @@ disp("f_min: " + min_value);
 disp("basis: " + mat2str(basis));
 disp(newline)
 
+print_intermediate_tableaux(intermediate_values, size(B, 1));
+
 
 % custom problem
 B = [8, 1, 5]';
@@ -32,3 +34,5 @@ disp("coordinates: " + mat2str(coords));
 disp("f_min: " + min_value);
 disp("basis: " + mat2str(basis));
 disp(newline)
+
+print_intermediate_tableaux(intermediate_values, size(B, 1));
