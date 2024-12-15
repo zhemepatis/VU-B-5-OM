@@ -12,9 +12,21 @@ A = ...
 B = [8, 10, 3]';
 
 % general problem
-result = simplex(A, B, C);
-
+[min_value, coords, basis, intermediate_values]  = simplex(A, B, C);
+disp("GENERAL PROBLEM RESULTS")
+disp("=======================")
+disp("coordinates: " + mat2str(coords));
+disp("f_min: " + min_value);
+disp("basis: " + mat2str(basis));
+disp(newline)
 
 % custom problem
-% B = [8, 1, 5];
-% result = simplex(A, B, C);
+B = [8, 1, 5];
+% [min_result, coords, basis, intermediate_values]  = simplex(A, B, C);
+
+% disp("CUSTOM PROBLEM RESULTS")
+% disp("======================")
+% disp("coordinates: " + mat2str(coords));
+% disp("f_min: " + min_value);
+% disp("basis: " + mat2str(basis));
+% disp(newline)

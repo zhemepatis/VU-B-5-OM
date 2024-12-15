@@ -1,16 +1,14 @@
-function result = simplex(A, B, C)
+function [min_value, solution, basis, intermediate_values] = simplex(A, B, C)
     constraint_num = size(B, 1);
     variable_num = size(A, 2);
 
-    tableau = get_tableau(A, B, C)
+    tableau = get_tableau(A, B, C);
+    intermediate_values = tableau;
+
     basis = variable_num + 1 : variable_num + constraint_num;
 
     iterations = 1;
-    while true
-        if all(tableau(end, :) >= 0) == true
-            break
-        end
-
+    while all(tableau(end, :) >= 0) ~= true
         [pivot_element, pivot_row_idx, pivot_col_idx] = get_pivot_element_coords(tableau);
 
         % reducing pivot row
@@ -22,10 +20,23 @@ function result = simplex(A, B, C)
         tableau = tableau - pivot_col * pivot_row;
         tableau(pivot_row_idx, :) = pivot_row;
 
+        % changing basis
+        basis(pivot_row_idx) = pivot_col_idx;
+
         iterations = iterations + 1;
+        intermediate_values = [intermediate_values; tableau];
     end
 
-    result = 1;
+    % getting min value coordinates
+    target_basis = basis(basis <= variable_num);
+    target_basis_idx = 1 : length(basis);
+    target_basis_idx = target_basis_idx(basis <= variable_num);
+
+    solution = zeros(1, variable_num);
+    solution(target_basis) = tableau(target_basis_idx, end);
+
+    % getting the min value
+    min_value = tableau(end, end);
 end
 
 
