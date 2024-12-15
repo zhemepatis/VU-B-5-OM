@@ -15,23 +15,19 @@ function result = simplex(A, B, C)
 
         % reducing pivot row
         tableau(pivot_row_idx, :) = tableau(pivot_row_idx, :) ./ pivot_element;
-        pivot_row = tableau(pivot_row_idx, :)
-        pivot_col = tableau(:, pivot_col_idx)
+        pivot_row = tableau(pivot_row_idx, :);
+        pivot_col = tableau(:, pivot_col_idx);
 
         % reducing other rows
-        % for i = 1:constraint_num
-        %     for j = 1:
-        % end
-
-
-
+        tableau = tableau - pivot_col * pivot_row;
+        tableau(pivot_row_idx, :) = pivot_row;
 
         iterations = iterations + 1;
-        break
     end
 
     result = 1;
 end
+
 
 function tableau = get_tableau(A, B, C)
     constraint_num = size(B, 1);
@@ -45,6 +41,7 @@ function tableau = get_tableau(A, B, C)
     tableau(1:constraint_num, variable_num + 1:variable_num + constraint_num) = identity_matrix;
     tableau(1:constraint_num, end) = B;
 end
+
 
 function [pivot_element, pivot_row_idx, pivot_col_idx] = get_pivot_element_coords(tableau)
     % finding pivot column
