@@ -36,7 +36,7 @@ function [min_value, solution, basis, intermediate_values] = simplex(A, B, C)
     solution(target_basis) = tableau(target_basis_idx, end);
 
     % getting the min value
-    min_value = tableau(end, end);
+    min_value = -tableau(end, end);
 end
 
 
