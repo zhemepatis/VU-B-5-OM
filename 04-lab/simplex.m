@@ -3,7 +3,7 @@ function [min_value, solution, basis, intermediate_values] = simplex(A, B, C)
     variable_num = size(A, 2);
 
     tableau = get_tableau(A, B, C);
-    intermediate_values = tableau
+    intermediate_values = tableau;
 
     basis = variable_num + 1 : variable_num + constraint_num;
 
